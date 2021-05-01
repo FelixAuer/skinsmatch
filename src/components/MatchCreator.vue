@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-center py-3 bg-neutral-800">
-      <h1 class="uppercase font-medium text-xl">New Skinsmatch</h1>
+      <h1 class="uppercase font-medium text-xl text-neutral-200">New Skinsmatch</h1>
     </div>
     <div class="bg-neutral-600 px-2 py-2">
       <div class="grid grid-cols-4 gap-6">
