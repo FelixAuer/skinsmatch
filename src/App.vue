@@ -3,7 +3,7 @@
     <main class="flex-grow">
       <router-view/>
     </main>
-    <div class="container mx-auto text-center text-xs text-neutral-400 pb-4">
+    <div class="container mx-auto text-center text-xs text-neutral-400 pb-4 bg-neutral-900">
       <div>
         <a href="https://www.felixauer.com">Felix Auer</a>, 2021
       </div>
