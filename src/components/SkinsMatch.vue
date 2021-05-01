@@ -28,6 +28,12 @@
         </div>
       </div>
 
+      <k-progress
+          style="margin: 0 !important;"
+          :percent="percentage" :color="['#DE911D', '#F7C948']" bg-color="#B1B1B1" :show-text="false"
+          :border="false"></k-progress>
+
+
       <div class="bg-neutral-600 px-3 py-4 uppercase">
         <div v-if="game.suddenDeath" class="mb-4 text-sm text-center" style="text-transform: none">
           <p>Closest to the pin, last one to miss a put or longest drive. Find a way to settle this and chose the
@@ -38,7 +44,7 @@
           <div class="flex">
             <div class="flex-grow py-1">
               <div class="text-xl leading-tight text-primary-100">{{ player.name }} <span class="text-sm"
-                                                                         v-if="(game.currentHole -1) % game.players.length == position && !game.suddenDeath">&#x1F94F;</span>
+                                                                                          v-if="(game.currentHole -1) % game.players.length == position && !game.suddenDeath">&#x1F94F;</span>
               </div>
               <div class="text-sm leading-tight">{{ wonSkins(player.id) }} Skins - ${{
                   wonSkins(player.id) * game.payout
@@ -111,11 +117,13 @@
 <script>
 import MatchCreator from "@/components/MatchCreator";
 import DebtService from "@/services/DebtService";
+import KProgress from 'k-progress-v3'
 
 export default {
   name: "SkinsMatch",
   components: {
-    MatchCreator
+    MatchCreator,
+    KProgress
   },
   props: {
     msg: String,
@@ -151,7 +159,9 @@ export default {
       openSkins++
       return openSkins
     },
-
+    percentage() {
+      return Math.round(100 * this.game.currentHole / this.game.holes.length);
+    },
     finished() {
       return this.game.currentHole == this.game.holes.length + 1
     },
@@ -219,3 +229,9 @@ export default {
 }
 ;
 </script>
+
+<style>
+.k-progress-outer {
+  padding-right: 0 !important;
+}
+</style>

@@ -7,7 +7,7 @@
       <div class="grid grid-cols-4 gap-6">
         <div class="col-span-2">
           <label for="holes" class="block text-sm font-medium uppercase">Holes</label>
-          <input type="number" name="holes" id="holes" v-model="holes"
+          <input autocomplete="off" type="number" name="holes" id="holes" v-model="holes"
                  class="mt-1 focus:ring-supporting-500 focus:border-supporting-500 block w-full  text-sm   bg-neutral-400 placeholder-neutral-200 text-neutral-100 font-bold"/>
         </div>
 
@@ -18,7 +18,7 @@
                     class="inline-flex items-center px-3  bg-neutral-800 text-sm">
                   $
                 </span>
-            <input type="number" name="payout" id="payout" v-model="payout"
+            <input autocomplete="off" type="number" name="payout" id="payout" v-model="payout"
                    class="focus:ring-supporting-500 focus:border-supporting-500 flex-1 block w-full rounded-none text-sm bg-neutral-400 placeholder-neutral-200 text-neutral-100 font-bold">
           </div>
         </div>
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="flex mt-1">
-        <input v-model="newPlayerName" type="text" name="newPlayer" id="newPlayer" placeholder="New Player Name"
+        <input autocomplete="off" v-model="newPlayerName" type="text" name="newPlayer" id="newPlayer" placeholder="New Player Name"
                class="uppercase focus:ring-supporting-500 focus:border-supporting-500 flex-1 block w-full rounded-none text-sm bg-neutral-400 placeholder-neutral-200 text-neutral-100"
         />
         <span
