@@ -41,8 +41,7 @@
                 </span>
         </div>
       </div>
-      <div class="flex mt-1">
-        <form v-on:submit.prevent="addPlayer">
+      <form class="flex mt-1" v-on:submit.prevent="addPlayer">
         <input autocomplete="off" v-model="newPlayerName" type="text" name="newPlayer" id="newPlayer"
                placeholder="New Player Name" ref="newPlayerName"
                class="uppercase focus:ring-supporting-500 focus:border-supporting-500 flex-1 block w-full rounded-none text-sm bg-neutral-400 placeholder-neutral-200 text-neutral-100"
@@ -53,8 +52,7 @@
 hover:bg-neutral-700 focus:ring-2 focus:ring-offset-2 focus:bg-neutral-600">
                   +
                 </span>
-        </form>
-      </div>
+      </form>
 
 
       <div class="mt-3">
