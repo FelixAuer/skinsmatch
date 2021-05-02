@@ -42,15 +42,30 @@
         </div>
       </div>
       <div class="flex mt-1">
-        <input autocomplete="off" v-model="newPlayerName" type="text" name="newPlayer" id="newPlayer" placeholder="New Player Name"
+        <input autocomplete="off" v-model="newPlayerName" type="text" name="newPlayer" id="newPlayer"
+               placeholder="New Player Name"
                class="uppercase focus:ring-supporting-500 focus:border-supporting-500 flex-1 block w-full rounded-none text-sm bg-neutral-400 placeholder-neutral-200 text-neutral-100"
         />
         <span
             @click="addPlayer"
-            class="inline-flex items-center px-3 bg-neutral-800">
+            class="inline-flex items-center px-3 bg-neutral-800
+hover:bg-neutral-700 focus:ring-2 focus:ring-offset-2 focus:bg-neutral-600">
                   +
                 </span>
       </div>
+
+
+      <div class="mt-3">
+        <div class="relative flex items-start">
+          <div class="flex items-center h-5">
+            <input id="comments" name="comments" type="checkbox" class="focus:ring-supporting-500 h-4 w-4 text-supporting-600 bg-neutral-400" v-model="randomizeOrder" />
+          </div>
+          <div class="ml-3 text-sm">
+            <label for="comments" class="text-sm font-medium uppercase">Random tee order</label>
+          </div>
+        </div>
+      </div>
+
 
       <div class="mt-4" v-if="this.players.length > 0">
         <span class="block text-sm font-medium uppercase">buy in: ${{ sumPerPlayer }} per player</span>
@@ -62,7 +77,7 @@
       <div class="mt-3">
         <button type="button" @click="startGame"
                 class="w-full uppercase items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium text-neutral-50 bg-supporting-600 hover:bg-supporting-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-supporting-500">
-        Start Game
+          Start Game
         </button>
       </div>
     </div>
@@ -80,7 +95,8 @@ export default {
       players: [],
       newPlayerName: '',
       nextId: 0,
-      error: ''
+      error: '',
+      randomizeOrder: true
     }
   },
   computed: {
@@ -147,6 +163,16 @@ export default {
           pushed: false,
           winner: null
         })
+      }
+
+      if(this.randomizeOrder){
+        let j, x, i;
+        for (i = this.players.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          x = this.players[i];
+          this.players[i] = this.players[j];
+          this.players[j] = x;
+        }
       }
 
       this.$emit('newGame', {

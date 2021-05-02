@@ -5,16 +5,19 @@
   <div v-else>
     <div v-if="!finished">
       <div class="py-3 px-3 bg-neutral-800 uppercase">
-        <div v-if="game.suddenDeath" class="mb-2">
-          <div class="uppercase font-medium text-xl text-primary-200">
+        <div v-if="game.suddenDeath" class="flex mb-2 text-3xl font-medium text-primary-200 justify-between">
+          <div class="uppercase">
             Sudden Death
           </div>
+          <div class="text-right">
+            {{ openSkins }} Skin<span v-if="openSkins > 1">s</span> - $ {{ openSkins * game.payout }}
+          </div>
         </div>
-        <div v-else class="flex mb-2 text-3xl font-medium text-primary-200">
-          <div class="uppercase   flex-1">
+        <div v-else class="flex mb-2 text-3xl font-medium text-primary-200 justify-between">
+          <div class="uppercase">
             Hole {{ game.currentHole }}
           </div>
-          <div class="flex-1 text-right">
+          <div class="text-right">
             {{ openSkins }} Skin<span v-if="openSkins > 1">s</span> - $ {{ openSkins * game.payout }}
           </div>
         </div>
@@ -191,13 +194,13 @@ export default {
       return won
     },
     claimSkin(playerId) {
-      window.navigator.vibrate(200)
+      window.navigator.vibrate(100)
 
       this.game.holes[this.game.currentHole - 1].winner = playerId
       this.game.currentHole++
     },
     push() {
-      window.navigator.vibrate(200)
+      window.navigator.vibrate(100)
 
       if (this.game.currentHole === this.game.holes.length) {
         this.game.suddenDeath = true
@@ -233,6 +236,9 @@ export default {
     },
     firstThrowerStyling(position) {
       if ((this.game.currentHole - 1) % this.game.players.length == position && !this.game.suddenDeath) {
+        return "bg-neutral-700 -mx-3 px-3"
+      }
+      if ((this.game.currentHole - 1) % this.game.players.length == (position-1) && this.game.suddenDeath) {
         return "bg-neutral-700 -mx-3 px-3"
       }
       return ''
