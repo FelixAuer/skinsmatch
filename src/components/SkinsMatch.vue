@@ -10,8 +10,8 @@
             Sudden Death
           </div>
         </div>
-        <div v-else class="flex mb-2 text-xl text-primary-200">
-          <div class="uppercase font-medium  flex-1">
+        <div v-else class="flex mb-2 text-3xl font-medium text-primary-200">
+          <div class="uppercase   flex-1">
             Hole {{ game.currentHole }}
           </div>
           <div class="flex-1 text-right">
@@ -40,22 +40,24 @@
             winner.</p>
         </div>
 
-        <div class="mb-2" v-for="(player, position) in game.players" :key="player.id">
-          <div class="flex">
-            <div class="flex-grow py-1">
-              <div class="text-xl leading-tight text-primary-100">{{ player.name }} <span class="text-sm"
-                                                                                          v-if="(game.currentHole -1) % game.players.length == position && !game.suddenDeath">&#x1F94F;</span>
+        <div v-for="(player, position) in game.players" :key="player.id">
+          <div :class="firstThrowerStyling(position)">
+            <div class="flex py-1">
+              <div class="flex-grow py-1">
+                <div class="text-xl leading-tight text-primary-100">{{ player.name }}
+
+                </div>
+                <div class="text-sm leading-tight">{{ wonSkins(player.id) }} Skins - ${{
+                    wonSkins(player.id) * game.payout
+                  }}
+                </div>
               </div>
-              <div class="text-sm leading-tight">{{ wonSkins(player.id) }} Skins - ${{
-                  wonSkins(player.id) * game.payout
-                }}
+              <div class="flex justify-center py-1">
+                <button type="button" v-if="!finished" @click="claimSkin(player.id)"
+                        class="inline-flex items-center px-2.5 py-1.5 border border-transparent uppercase text-xs font-medium  text-neutral-50 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                  Claim
+                </button>
               </div>
-            </div>
-            <div class="flex justify-center py-1">
-              <button type="button" v-if="!finished" @click="claimSkin(player.id)"
-                      class="inline-flex items-center px-2.5 py-1.5 border border-transparent uppercase text-xs font-medium  text-neutral-50 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                Claim
-              </button>
             </div>
           </div>
         </div>
@@ -189,10 +191,14 @@ export default {
       return won
     },
     claimSkin(playerId) {
+      window.navigator.vibrate(200)
+
       this.game.holes[this.game.currentHole - 1].winner = playerId
       this.game.currentHole++
     },
     push() {
+      window.navigator.vibrate(200)
+
       if (this.game.currentHole === this.game.holes.length) {
         this.game.suddenDeath = true
         return
@@ -224,6 +230,12 @@ export default {
         }
       }
       return "Hans"
+    },
+    firstThrowerStyling(position) {
+      if ((this.game.currentHole - 1) % this.game.players.length == position && !this.game.suddenDeath) {
+        return "bg-neutral-700 -mx-3 px-3"
+      }
+      return ''
     }
   }
 }
