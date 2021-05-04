@@ -92,7 +92,7 @@ export default {
   emits: ["newGame"],
   data() {
     return {
-      holes: 9,
+      holes: 18,
       payout: 4,
       players: [],
       newPlayerName: '',

@@ -1,9 +1,4 @@
 <template>
-  <div class="bg-neutral-800 font-medium text-xl">
-    <div class="container text-center py-4 text-primary-200  border-0 border-b-2 border-supporting-700">
-      <span>SKINSMAT.CH</span>
-    </div>
-  </div>
   <div class="container py-6 px-4">
     <div class="bg-supporting-50 p-4 mb-6 hidden md:block">
       <div class="flex">
@@ -28,19 +23,57 @@
         </div>
       </div>
     </div>
+    <div>
+      <SkinsMatch/>
+    </div>
 
-    <SkinsMatch/>
+    <div>
+      <FoldoutPanel
+          title="Rules"
+      >
+        <h3 class="text-lg">What's a Skins Match?</h3>
+        <p class="mb-4">
+          <i>Skins</i> is a match play type format for golf-like games, most commonly played by three or four players.
+          Players compete for money or other rewards on a per-hole basis.
+        </p>
+        <h3 class="text-lg">How To Play</h3>
+        <p class="mb-2">
+          Before the game players decide on reward for winning a hole - called a "skin", e.g. $5 per hole. Players can
+          either pool their money at the start of the game and pay the winner
+          directly after each whole or settle their debts after the game.
+        </p>
+        <p class="mb-2">As a match play type format every hole is played by itself. The single player with the lowest
+          score on a hole
+          wins
+          the skin and reaps the reward for that hole.</p>
+        <p class="mb-2"><b>Pushing the hole:</b> Should two or more players have an equally low best score nobody wins
+          the skin. The
+          prize is kept in the pot and gets added to the next hole's skin. Skins keep stacking until a single player
+          wins a hole.</p>
+        <p class="mb-4">If the last hole gets pushed players have to decide on a way to determine the winner of the
+          skins that are
+          still on the line. Popular examples are CTP, longest drive, or last one to miss a putt.</p>
+        <h3 class="font-bold">Tee Order</h3>
+        <p class="mb-4">
+          Players keep the same tee order throughout the round. The first person to take the box rotates with every
+          hole. In other words: the second player to tee off on the first hole is the first one to tee off on the second
+          hole, and so on.
+        </p>
+      </FoldoutPanel>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import SkinsMatch from "@/components/SkinsMatch.vue";
+import FoldoutPanel from "@/components/FoldoutPanel";
 
 export default {
   name: "Home",
   components: {
     SkinsMatch,
+    FoldoutPanel
   },
 };
 </script>
