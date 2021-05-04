@@ -39,7 +39,7 @@
 
       <div class="bg-neutral-600 px-3 py-4 uppercase">
         <div v-if="game.suddenDeath" class="mb-4 text-sm text-center" style="text-transform: none">
-          <p>Closest to the pin, last one to miss a put or longest drive. Find a way to settle this and chose the
+          <p>Closest to the pin, last one to miss a putt or longest drive. Find a way to settle this and choose the
             winner.</p>
         </div>
 
