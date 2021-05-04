@@ -46,7 +46,7 @@
         <div v-for="(player, position) in game.players" :key="player.id">
           <div :class="firstThrowerStyling(position)">
             <div class="flex py-1">
-              <div class="flex-grow py-1">
+              <div class="flex-grow py-1">v
                 <div class="text-xl leading-tight text-primary-100">{{ player.name }}
 
                 </div>
@@ -229,13 +229,28 @@ export default {
       return won
     },
     claimSkin(playerId) {
-      window.navigator.vibrate(100)
+      this.vibrate()
 
       this.game.holes[this.game.currentHole - 1].winner = playerId
       this.game.currentHole++
     },
+    vibrate(){
+      if (!window) {
+        return;
+      }
+
+      if (!window.navigator) {
+        return;
+      }
+
+      if (!window.navigator.vibrate) {
+        return;
+      }
+
+      window.navigator.vibrate(100);
+    },
     push() {
-      window.navigator.vibrate(100)
+      this.vibrate()
 
       if (this.game.currentHole === this.game.holes.length) {
         this.game.suddenDeath = true
