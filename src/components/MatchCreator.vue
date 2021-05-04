@@ -63,7 +63,7 @@ hover:bg-neutral-700 focus:ring-2 focus:ring-offset-2 focus:bg-neutral-600">
                    v-model="randomizeOrder"/>
           </div>
           <div class="ml-3 text-sm">
-            <label for="comments" class="text-sm font-medium uppercase">Random tee order</label>
+            <label for="comments" class="text-sm font-medium uppercase">Randomize first tee order</label>
           </div>
         </div>
       </div>
