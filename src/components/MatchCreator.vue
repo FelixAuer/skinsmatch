@@ -181,6 +181,11 @@ export default {
         }
       }
 
+      this.$gtag.event('start_game', {
+        'event_category' : 'Game Event',
+        'event_label' : 'start'
+      })
+
       this.$emit('newGame', {
         holes: holes,
         players: this.players,
