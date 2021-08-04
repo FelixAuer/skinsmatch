@@ -46,7 +46,7 @@
         <div v-for="(player, position) in game.players" :key="player.id">
           <div :class="firstThrowerStyling(position)">
             <div class="flex py-1">
-              <div class="flex-grow py-1">v
+              <div class="flex-grow py-1">
                 <div class="text-xl leading-tight text-primary-100">{{ player.name }}
 
                 </div>
