@@ -4,7 +4,7 @@
       <h1 class="uppercase font-medium text-xl text-neutral-200">New Skinsmatch</h1>
     </div>
     <div class="bg-neutral-600 px-2 py-2">
-      <div class="grid grid-cols-4 gap-6">
+      <div class="grid grid-cols-6 gap-3">
         <div class="col-span-2">
           <label for="holes" class="block text-sm font-medium uppercase">Holes</label>
           <input autocomplete="off" type="number" name="holes" id="holes" v-model="holes"
@@ -19,6 +19,13 @@
                   $
                 </span>
             <input autocomplete="off" type="number" name="payout" id="payout" v-model="payout"
+                   class="focus:ring-supporting-500 focus:border-supporting-500 flex-1 block w-full rounded-none text-sm bg-neutral-400 placeholder-neutral-200 text-neutral-100 font-bold">
+          </div>
+        </div>
+        <div class="col-span-2">
+          <label for="starthole" class="block text-sm font-medium uppercase">Start hole</label>
+          <div class="mt-1 flex  ">
+            <input autocomplete="off" type="number" name="starthole" id="starthole" v-model="starthole"
                    class="focus:ring-supporting-500 focus:border-supporting-500 flex-1 block w-full rounded-none text-sm bg-neutral-400 placeholder-neutral-200 text-neutral-100 font-bold">
           </div>
         </div>
@@ -94,6 +101,7 @@ export default {
     return {
       holes: 18,
       payout: 4,
+      starthole: 1,
       players: [],
       newPlayerName: '',
       nextId: 0,
@@ -160,12 +168,21 @@ export default {
         this.error = 'You need to play for at least one cent!'
         return;
       }
+      if (this.starthole <= 0 || this.starthole > this.holes) {
+        this.error = 'Select an appropriate starting hole!'
+        return;
+      }
 
 
       let holes = []
       for (let i = 0; i < this.holes; i++) {
+        let id = i + parseInt(this.starthole);
+        if (id > this.holes) {
+          id -= this.holes
+        }
+
         holes.push({
-          id: i + 1,
+          id: id,
           pushed: false,
           winner: null
         })
@@ -182,8 +199,8 @@ export default {
       }
 
       this.$gtag.event('start_game', {
-        'event_category' : 'Game Event',
-        'event_label' : 'start'
+        'event_category': 'Game Event',
+        'event_label': 'start'
       })
 
       this.$emit('newGame', {

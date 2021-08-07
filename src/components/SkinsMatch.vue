@@ -15,7 +15,7 @@
         </div>
         <div v-else class="flex mb-2 text-3xl font-medium text-primary-200 justify-between">
           <div class="uppercase">
-            Hole {{ game.currentHole }}
+            Hole {{ currentHoleName }}
           </div>
           <div class="text-right">
             {{ openSkins }} Skin<span v-if="openSkins > 1">s</span> - $ {{ openSkins * game.payout }}
@@ -207,6 +207,9 @@ export default {
     },
     settleDebts() {
       return DebtService.settleDebts(this.game.holes, this.game.payout, JSON.parse(JSON.stringify(this.game.players)))
+    },
+    currentHoleName() {
+      return this.game.holes[this.game.currentHole-1].id
     }
   }
   ,
