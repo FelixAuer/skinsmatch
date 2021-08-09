@@ -168,7 +168,7 @@ export default {
         this.error = 'You need to play for at least one cent!'
         return;
       }
-      if (this.starthole <= 0 || this.starthole > this.holes) {
+      if (parseInt(this.starthole) <= 0 || parseInt(this.starthole) > parseInt(this.holes)) {
         this.error = 'Select an appropriate starting hole!'
         return;
       }
