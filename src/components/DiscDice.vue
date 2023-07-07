@@ -10,14 +10,14 @@
     <div class="px-3 pb-3" v-if="disc">
       <div class="mt-3 ">
         <div>Throw</div>
-        <div class="text-3xl">
+        <div class="text-3xl text-white">
           {{ mThrow.name }}
         </div>
         <div v-if="mThrow.description" class="text-sm">({{ mThrow.description }})</div>
       </div>
       <div class="mt-3 ">
         <div>Disc</div>
-        <div class="text-3xl">
+        <div class="text-3xl text-white">
           {{ disc.name }}
         </div>
         <div v-if="disc.description" class="text-sm">({{ disc.description }})</div>
